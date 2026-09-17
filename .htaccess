@@ -1,0 +1,15 @@
+DirectoryIndex index.php
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Force HTTPS: redirect any http:// request to the https:// version of the
+# same URL, before any other routing happens. This must stay first.
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteRule ^assets/ - [L]
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^sitemap\.xml$ sitemap.php [L,QSA]
+RewriteRule ^robots\.txt$ - [L]
+RewriteRule ^ index.php [L,QSA]
+</IfModule>
